@@ -3,7 +3,7 @@
 This repository demonstrates Journium integration for **Next.js App Router**. Use this as a reference implementation for building your own Journium-powered applications with Next.js App Router.
 
 > [!NOTE]
-> If you're using **Next.js Pages Router**, please refer to the [Next.js Pages Router example repository](https://github.com/journium/nextjs-app-router-example.git) instead.
+> If you want to use **Next.js Pages Router**, please refer to the [Next.js Pages Router example repository](https://github.com/journium/nextjs-pages-router-example.git) instead.
 
 ## Prerequisites
 
