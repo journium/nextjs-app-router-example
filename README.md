@@ -13,8 +13,8 @@ This is a Next.js example application demonstrating how to integrate Journium in
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/journium/journium-examples.git
-cd journium-examples/looply-app-nextjs
+git clone https://github.com/journium/nextjs-app-router-example.git
+cd nextjs-app-router-example
 ```
 
 ### 2. Install Dependencies
