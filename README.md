@@ -1,6 +1,9 @@
-# Looply Habit Tracker - Next.js Example
+# Looply Habit Tracker - Next.js (App Router) Example
 
-This is a Next.js example application demonstrating how to integrate Journium into your application. Use this as a reference implementation for building your own Journium-powered applications.
+This repository demonstrates Journium integration for **Next.js App Router**. Use this as a reference implementation for building your own Journium-powered applications with Next.js App Router.
+
+> [!NOTE]
+> If you're using **Next.js Pages Router**, please refer to the [Next.js Pages Router example repository](https://github.com/journium/nextjs-app-router-example.git) instead.
 
 ## Prerequisites
 
