@@ -6,7 +6,7 @@ import { AppHeader } from "@/components/app-header"
 import { AppNav, AppNavMobile } from "@/components/app-nav"
 import { useStore } from "@/lib/store"
 import { useRouter } from "next/navigation"
-import { useEffect } from "react"
+import { useEffect, useState, startTransition } from "react"
 
 export default function AppLayout({
   children,
@@ -15,12 +15,23 @@ export default function AppLayout({
 }) {
   const { user } = useStore()
   const router = useRouter()
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
-    if (!user) {
+    startTransition(() => {
+      setIsMounted(true)
+    })
+  }, [])
+
+  useEffect(() => {
+    if (isMounted && !user) {
       router.push("/auth/sign-in")
     }
-  }, [user, router])
+  }, [isMounted, user, router])
+
+  if (!isMounted) {
+    return null
+  }
 
   if (!user) {
     return null
