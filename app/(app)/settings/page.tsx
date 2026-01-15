@@ -18,6 +18,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { useStore } from "@/lib/store"
+import { useReset } from "@journium/nextjs"
 import { Crown, Bell, AlertTriangle } from "lucide-react"
 import { useState } from "react"
 import { toast } from "sonner"
@@ -26,6 +27,7 @@ import { useRouter } from "next/navigation"
 export default function SettingsPage() {
   const router = useRouter()
   const { user, settings, updateSettings, resetData, setUser, upgradeToPro } = useStore()
+  const reset = useReset()
   const [name, setName] = useState(user?.name || "")
   const [email, setEmail] = useState(user?.email || "")
 
@@ -44,6 +46,7 @@ export default function SettingsPage() {
 
   const handleResetData = () => {
     resetData()
+    reset()
     toast.success("Demo data reset")
     router.push("/auth/sign-in")
   }
