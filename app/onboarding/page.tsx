@@ -10,7 +10,7 @@ import { Progress } from "@/components/ui/progress"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useStore, type HabitType } from "@/lib/store"
-import { track } from "@/lib/analytics"
+import { useTrackEvent } from "@journium/nextjs"
 import { toast } from "sonner"
 import { Dumbbell, Brain, Droplets, Moon, Footprints, Coffee, Clock } from "lucide-react"
 
@@ -46,6 +46,7 @@ const habitOptions: HabitOption[] = [
 export default function OnboardingPage() {
   const router = useRouter()
   const { addHabit, updateSettings } = useStore()
+  const trackEvent = useTrackEvent()
   const [step, setStep] = useState(1)
   const [selectedGoal, setSelectedGoal] = useState<string>("")
   const [selectedHabits, setSelectedHabits] = useState<string[]>([])
@@ -58,14 +59,11 @@ export default function OnboardingPage() {
 
   const handleNext = () => {
     if (step === 1) {
-      // TODO: track("onboarding_step_1_completed", { goal: selectedGoal })
-      track("onboarding_step_1_completed", { goal: selectedGoal })
+      trackEvent("onboarding_step_1_completed", { goal: selectedGoal })
     } else if (step === 2) {
-      // TODO: track("onboarding_step_2_completed", { habits: selectedHabits })
-      track("onboarding_step_2_completed", { habits: selectedHabits })
+      trackEvent("onboarding_step_2_completed", { habits: selectedHabits })
     } else if (step === 3) {
-      // TODO: track("onboarding_step_3_completed", { reminderTime })
-      track("onboarding_step_3_completed", { reminderTime })
+      trackEvent("onboarding_step_3_completed", { reminderTime })
     }
     setStep((prev) => Math.min(prev + 1, totalSteps))
   }
@@ -101,8 +99,7 @@ export default function OnboardingPage() {
     }
 
     toast.success("Your habits are ready!")
-    // TODO: track("onboarding_completed", { habitCount: selectedHabits.length + (customHabitName ? 1 : 0) })
-    track("onboarding_completed", { habitCount: selectedHabits.length + (customHabitName ? 1 : 0) })
+    trackEvent("onboarding_completed", { habitCount: selectedHabits.length + (customHabitName ? 1 : 0) })
 
     router.push("/log")
   }
@@ -110,15 +107,13 @@ export default function OnboardingPage() {
   const handleNotificationAllow = () => {
     updateSettings({ notificationPermission: "allowed" })
     toast.success("Notifications enabled!")
-    // TODO: track("notification_permission_granted")
-    track("notification_permission_granted")
+    trackEvent("notification_permission_granted")
     handleFinish()
   }
 
   const handleNotificationSkip = () => {
     updateSettings({ notificationPermission: "denied" })
-    // TODO: track("notification_permission_denied")
-    track("notification_permission_denied")
+    trackEvent("notification_permission_denied")
     handleFinish()
   }
 
