@@ -89,7 +89,7 @@ The server will start at **http://localhost:3000**
 
 ```bash
 npm run dev -- -p 3001
-pnpm dev -- -p 3001
+pnpm dev -p 3001
 yarn dev -p 3001  # Note: yarn doesn't use -- before flags
 ```
 </details>
